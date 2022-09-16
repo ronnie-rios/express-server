@@ -3,8 +3,7 @@ const express = require('express');
 const teams_controller = require('./controllers/team_controller');
 
 //invoke express
-const app = express()
-
+const app = express();
 const PORT = 9001;
 
 app.use('/teams', teams_controller);
