@@ -14,3 +14,5 @@ app.use('/teams', teams_controller);
 app.listen(PORT, () => {
     console.log(`listening on ${PORT}`)
 });
+
+module.exports = app
