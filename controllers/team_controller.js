@@ -6,23 +6,23 @@ router.get('/', (req, res) => {
     res.json(data)
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
     const foundTeam = data.filter(team => team.id == req.params.id);
-    console.log(foundTeam[0])
+    
     if (foundTeam < 1) {
-        res.status(404).json({ error: 'team not found'});
+        next({ status: 404, message: 'not found' });
     } else {
         res.status(200).json(foundTeam[0])
     }
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     if (req.body.team && req.body.place) {
         const newTeam = { team: req.body.team, place: req.body.place };
         data.push(newTeam);
         res.status(200).redirect('/');
     } else {
-        res.status(400).json({ error: 'problem creating your team' });
+        next({ status: 400, message: 'problem creating team' })
     }
 });
 
